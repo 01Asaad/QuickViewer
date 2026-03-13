@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtCore import Qt, QPoint, QRect
-from PyQt5.QtGui import QPixmap, QPainter, QColor, QWheelEvent
+from PySide6.QtWidgets import QApplication, QWidget
+from PySide6.QtCore import Qt, QPoint, QRect
+from PySide6.QtGui import QPixmap, QPainter, QColor, QWheelEvent
 
 class TransparentImageWidget(QWidget):
     def __init__(self, parent=None):
@@ -22,7 +22,7 @@ class TransparentImageWidget(QWidget):
         if not self.image:
             return
             
-        screen_geometry = QApplication.desktop().screenGeometry()
+        screen_geometry = QApplication.primaryScreen().geometry()
         screen_width = screen_geometry.width()
         screen_height = screen_geometry.height()
         

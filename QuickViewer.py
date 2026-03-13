@@ -1,9 +1,9 @@
 from pathlib import Path
 
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, 
+from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, 
                              QVBoxLayout, QPushButton)
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QKeyEvent
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QKeyEvent
 
 import os
 
