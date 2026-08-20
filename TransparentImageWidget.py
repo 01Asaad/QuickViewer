@@ -69,7 +69,7 @@ class TransparentImageWidget(QWidget):
         self.update()
         
     def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
+        if event.button() == Qt.MouseButton.LeftButton:
             self.drag_start_point = event.pos()
             
     def mouseMoveEvent(self, event):
@@ -81,5 +81,5 @@ class TransparentImageWidget(QWidget):
         self.update()
             
     def mouseReleaseEvent(self, event):
-        if event.button() == Qt.LeftButton:
+        if event.button() == Qt.MouseButton.LeftButton:
             self.drag_start_point = None

@@ -62,7 +62,7 @@ class QuickViewer(QMainWindow):
         self.close_button.move(10, 10) 
         
         # self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
-        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         screen = QApplication.primaryScreen()
         screen_geometry = screen.availableGeometry()
         width = int(screen_geometry.width() * 0.75)
@@ -91,10 +91,10 @@ class QuickViewer(QMainWindow):
     def get_image_files(self):
         if not self.current_directory: return []
             
-        image_extensions = ['jpg', 'jpeg', 'png', 'bmp', 'gif', 'tif', 'tiff', 'webp']
+        IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'bmp', 'gif', 'tif', 'tiff', 'webp']
         files = []
         for file in os.scandir(self.current_directory):
-            if file.name.split(".")[-1] in image_extensions :
+            if file.name.split(".")[-1] in IMAGE_EXTENSIONS :
                 files.append(file.name)
         return sorted(files)
         
@@ -124,16 +124,11 @@ class QuickViewer(QMainWindow):
             self.showFullScreen()
         
     def keyPressEvent(self, event: QKeyEvent):
-        print("key press event")
-        print(event.key())
-        if event.key() == Qt.Key_F:
-            self.toggle_fullscreen()
-        elif event.key() == Qt.Key_E:
-            self.show_next_image()
-        elif event.key() == Qt.Key_Q:
-            self.show_prev_image()
-        elif event.key() == Qt.Key_Escape:
-            self.close()
-        else:
-            super().keyPressEvent(event)
+        print(f"{event.key()} pressed")
+        match event.key():
+            case Qt.Key.Key_F : self.toggle_fullscreen()
+            case Qt.Key.Key_E : self.show_next_image()
+            case Qt.Key.Key_Q : self.show_prev_image()
+            case Qt.Key.Key_Escape : self.close()
+            case _ : super().keyPressEvent(event)
 
